@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Miry</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffdde1;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Borde animado */
+@keyframes bordeBrillo {
+    0% { box-shadow: 0 0 20px #ff4d6d inset; }
+    50% { box-shadow: 0 0 40px #ff99aa inset; }
+    100% { box-shadow: 0 0 20px #ff4d6d inset; }
+}
+.borde-animado {
+    animation: bordeBrillo 3s infinite;
+}
+
+/* Pantalla inicial */
+#overlay {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:#ffdde1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:10;
+}
+
+button {
+    padding:15px 25px;
+    border:none;
+    background:#ff4d6d;
+    color:white;
+    font-size:20px;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+/* Corazones flotando */
+.heart {
+    position:absolute;
+    color:red;
+    font-size:24px;
+    animation: floatUp 4s linear infinite;
+}
+@keyframes floatUp {
+    0% {transform:translateY(0); opacity:1;}
+    100% {transform:translateY(-300px); opacity:0;}
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+@keyframes subir {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Corazones que explotan */
+@keyframes explotar {
+    0% { transform: scale(0.5); opacity: 1; }
+    70% { transform: scale(2); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+.corazonExplota {
+    position: fixed;
+    font-size: 50px;
+    color: #ff3b6a;
+    animation: explotar 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+/* POEMA MEJORADO */
+#poema {
+    font-size: 24px;
+    width: 80%;
+    margin: 50px auto;
+    padding: 40px 30px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ffffffee, #ffe6f2ee);
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    border-left: 6px solid #ff4d6d;
+    border-right: 6px solid #ff4d6d;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    line-height: 1.7;
+    animation: aparecer 1.3s ease;
+}
+
+#poema h2 {
+    font-family: 'Segoe UI', sans-serif;
+    font-style: normal;
+    font-size: 34px;
+    color: #e91e63;
+    margin-bottom: 20px;
+}
+
+/* Preguntas */
+#pregunta, #respuestaSi, #preguntaNo {
+    font-size: 30px;
+    margin-top: 30px;
+}
+.opciones button {
+    margin: 10px;
+    font-size: 24px;
+}
+</style>
+</head>
+
+<body class="borde-animado">
+
+<!-- Sonido -->
+<audio id="pop" src="https://www.myinstants.com/media/sounds/pop-cat.mp3"></audio>
+
+<!-- Pantalla inicial -->
+<div id="overlay">
+    <h1>Tócame para iniciar ❤️</h1>
+    <button onclick="iniciar()">Iniciar</button>
+</div>
+
+<div id="contenido" style="display:none;">
+
+    <!-- Spotify -->
+    <div style="text-align:center; margin-top: 20px;">
+        <iframe style="border-radius:12px" 
+        src="https://open.spotify.com/embed/track/0bBvuLFzIjrHm9PPyvohIA?utm_source=generator" 
+        width="90%" height="152" frameBorder="0" allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"></iframe>
+    </div>
+
+    <!-- POEMA DECORADO -->
+    <div id="poema">
+        <h2>Para ti ❤️</h2>
+
+    Aunque pasen los días y todo cambie sin avisar,<br><br>
+    mi cariño por ti sigue creciendo,<br>
+    suave, constante, como algo que encontró su lugar.<br><br>
+
+    Porque contigo todo se siente más ligero,<br>
+    más bonito, más sincero…<br>
+    como si tu presencia acomodara partes de mí<br>
+    que ni yo sabía que estaban fuera de lugar.<br><br>
+
+    Y no te voy a mentir:<br>
+    hay algo en tu mirada que se quedó conmigo,<br>
+    algo que mueve mi pecho,<br>
+    que enciende un fuego tranquilo<br>
+    del que no quiero escapar.<br><br>
+
+    Me gusta cómo hablas, cómo ríes,<br>
+    cómo existes…<br>
+    y cómo haces que incluso mis días normales<br>
+    parezcan un poquito mejores.<br><br>
+
+    Y si algún día la emoción cambia de forma,<br>
+    si la vida nos pone a prueba<br>
+    o si todo se vuelve distinto,<br>
+    prometo volver a enamorarme de ti,<br>
+    una y otra vez,<br>
+    de todas tus versiones,<br>
+    de todos tus días,<br>
+    de todos tus sueños.<br><br>
+
+    Porque quererte no es un impulso,<br>
+    ni un capricho,<br>
+    ni un momento pasajero…<br><br>
+
+    Es algo que quiero elegir,<br>
+    si tú también quieres elegirme a mí.<br><br>
+
+    <strong>Y por eso… te quería preguntar. ❤️</strong>
+</div>
+
+    </div>
+
+    <!-- Pregunta -->
+    <div id="pregunta">¿Quieres ser mi novia? ❤️</div>
+    <div class="opciones">
+        <button onclick="acepta()">Sí</button>
+        <button id="noBtn" onmouseover="huir()">No</button>
+    </div>
+
+    <!-- Respuesta Sí -->
+    <div id="respuestaSi" style="display:none;">
+        Gracias por decir que sí...<br>
+        Prometo cuidarte, apoyarte y hacerte sentir especial siempre. ❤️
+    </div>
+
+    <!-- Pregunta No -->
+    <div id="preguntaNo" style="display:none;">
+        ¿Estás segura que no quieres? 😢
+        <div class="opciones">
+            <button id="noSi" onmouseover="huir2()">Sí</button>
+            <button onclick="volverPregunta()">No</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function iniciar(){
+    document.getElementById("overlay").style.display="none";
+    document.getElementById("contenido").style.display="block";
+    setInterval(crearCorazon, 400);
+}
+
+function crearCorazon(){
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "❤";
+    h.style.left = Math.random()*100 + "%";
+    h.style.bottom = "0px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 4000);
+}
+
+function acepta() {
+    document.getElementById("pop").play();
+
+    document.getElementById("contenido").style.opacity = "0";
+    document.getElementById("contenido").style.pointerEvents = "none";
+
+    /* Explosión de corazones */
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            let c = document.createElement("div");
+            c.className = "corazonExplota";
+            c.innerText = "❤";
+            c.style.left = (window.innerWidth/2 + (Math.random()*200-100)) + "px";
+            c.style.top = (window.innerHeight/2 + (Math.random()*150-75)) + "px";
+            document.body.appendChild(c);
+            setTimeout(()=>c.remove(), 900);
+        }, i * 80);
+    }
+
+    // Pantalla final
+    let final = document.createElement("div");
+    final.id = "pantallaFinal";
+    final.style.position = "fixed";
+    final.style.top = "0";
+    final.style.left = "0";
+    final.style.width = "100%";
+    final.style.height = "100%";
+    final.style.background = "rgba(255, 240, 245, 0.95)";
+    final.style.display = "flex";
+    final.style.flexDirection = "column";
+    final.style.justifyContent = "center";
+    final.style.alignItems = "center";
+    final.style.textAlign = "center";
+    final.style.padding = "20px";
+    final.style.animation = "aparecer 1s ease";
+
+    final.innerHTML = `
+        <h1 style="color:#e91e63; font-size:45px; animation:latir 1.5s infinite;">💖 ¡Dijiste que sí! 💖</h1>
+
+        <p style="font-size:24px; color:#444; max-width:700px; animation:subir 1s ease;">
+            Gracias por decir que sí…<br><br>
+            Ahora oficialmente soy la persona más feliz del mundo 😳💘<br><br>
+            Prepárate porque te pienso dar muchísimo cariño,  
+            muchos detalles… y un novio que está feliz de tenerte. 💞  
+        </p>
+
+        <div style="font-size:55px; margin-top:20px; animation:subir 1s ease 0.3s forwards; opacity:0;">
+            🥺👉👈
+        </div>
+    `;
+    document.body.appendChild(final);
+}
+
+function huir(){
+    let btn = document.getElementById("noBtn");
+    btn.style.position="absolute";
+    btn.style.left = (Math.random()*70+10) + "%";
+    btn.style.top = (Math.random()*70+10) + "%";
+}
+function volverPregunta(){
+    document.getElementById("preguntaNo").style.display="none";
+    document.getElementById("pregunta").style.display="block";
+}
+function huir2(){
+    let btn = document.getElementById("noSi");
+    btn.style.position="absolute";
+    btn.style.left = (Math.random()*70+10) + "%";
+    btn.style.top = (Math.random()*70+10) + "%";
+}
+</script>
+
+</body>
+</html>
